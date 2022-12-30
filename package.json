@@ -1,13 +1,13 @@
 {
 	"name": "@pongjs/router",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Simple router for Cloudflare Workers",
 	"type": "module",
 	"types": "dist/index.d.ts",
 	"exports": "dist/index.js",
 	"repository": {
 		"type": "git",
-		"url": "ssh://git@github.com/lukeshay/astro-aws.git",
+		"url": "ssh://git@github.com/lukeshay/pongjs.git",
 		"directory": "."
 	},
 	"files": [
