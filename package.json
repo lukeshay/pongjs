@@ -1,10 +1,11 @@
 {
 	"name": "@pongjs/router",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Simple router for Cloudflare Workers",
 	"type": "module",
 	"types": "dist/index.d.ts",
 	"exports": "dist/index.js",
+	"main": "dist/index.js",
 	"repository": {
 		"type": "git",
 		"url": "ssh://git@github.com/lukeshay/pongjs.git",
