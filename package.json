@@ -1,0 +1,48 @@
+{
+	"name": "@pongjs/router",
+	"version": "0.0.1",
+	"description": "Simple router for Cloudflare Workers",
+	"type": "module",
+	"types": "dist/index.d.ts",
+	"main": "dist/index.js",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"prepare": "pnpm run build",
+		"build": "rimraf dist && tsc",
+		"prettier": "prettier --ignore-path .gitignore --check .",
+		"prettier:fix": "pnpm run prettier --write",
+		"lint": "eslint --ignore-path .gitignore .",
+		"lint:fix": "pnpm run lint --fix"
+	},
+	"keywords": [
+		"cloudflare",
+		"workers",
+		"router",
+		"typescript"
+	],
+	"author": "Luke Shay <https://www.lukeshay.com/>",
+	"license": "MIT",
+	"prettier": "@lshay/prettier-config",
+	"eslintConfig": {
+		"extends": [
+			"@lshay/eslint-config"
+		]
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20221111.1",
+		"@lshay/eslint-config": "^0.2.1",
+		"@lshay/prettier-config": "^0.5.2",
+		"eslint": "^8.30.0",
+		"prettier": "^2.8.1",
+		"rimraf": "^3.0.2",
+		"typescript": "^4.9.4"
+	},
+	"dependencies": {
+		"path-to-regexp": "^6.2.1"
+	},
+	"engines": {
+		"node": ">=14"
+	}
+}
