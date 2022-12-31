@@ -4,8 +4,10 @@
 	"description": "Simple router for Cloudflare Workers",
 	"type": "module",
 	"types": "dist/index.d.ts",
-	"exports": "dist/index.js",
-	"main": "dist/index.js",
+	"exports": "./dist/index.js",
+	"publishConfig": {
+		"access": "public"
+	},
 	"repository": {
 		"type": "git",
 		"url": "ssh://git@github.com/lukeshay/pongjs.git",
