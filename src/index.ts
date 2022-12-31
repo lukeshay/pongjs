@@ -19,7 +19,7 @@ class Router {
 	public add<E>(method: Method | StringOrRegExp, path: StringOrRegExp, handler: RouteHandler<E>) {
 		this.#routes.push({
 			handler,
-			method: typeof method === "string" ? new RegExp(method === "ANY" ? "^*+$" : method, "u") : method,
+			method: typeof method === "string" ? new RegExp(method === "ANY" ? "^.+$" : method, "u") : method,
 			path: typeof path === "string" ? pathToRegexp(path) : path,
 		});
 	}
