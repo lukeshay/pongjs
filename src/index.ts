@@ -16,7 +16,7 @@ type Route = {
 class Router {
 	#routes: Route[] = [];
 
-	public add<E>(method: StringOrRegExp, path: StringOrRegExp, handler: RouteHandler<E>) {
+	public add<E>(method: Method | StringOrRegExp, path: StringOrRegExp, handler: RouteHandler<E>) {
 		this.#routes.push({
 			handler,
 			method: typeof method === "string" ? new RegExp(method === "ANY" ? "^*+$" : method, "u") : method,
