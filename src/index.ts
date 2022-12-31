@@ -2,12 +2,12 @@ import { pathToRegexp } from "path-to-regexp";
 
 type RouteHandler<E> = (request: Request, env: E) => Promise<Response> | Response;
 
-type RoutePath = RegExp | string;
+type StringOrRegExp = RegExp | string;
 
-type Method = "DELETE" | "GET" | "OPTIONS" | "PATCH" | "POST" | "PUT" | "TRACE";
+type Method = "ANY" | "DELETE" | "GET" | "OPTIONS" | "PATCH" | "POST" | "PUT" | "TRACE";
 
 type Route = {
-	method: Method;
+	method: RegExp;
 	path: RegExp;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	handler: RouteHandler<any>;
@@ -16,10 +16,10 @@ type Route = {
 class Router {
 	#routes: Route[] = [];
 
-	public add<E>(method: Method, path: RoutePath, handler: RouteHandler<E>) {
+	public add<E>(method: StringOrRegExp, path: StringOrRegExp, handler: RouteHandler<E>) {
 		this.#routes.push({
 			handler,
-			method,
+			method: typeof method === "string" ? new RegExp(method === "ANY" ? "^*+$" : method, "u") : method,
 			path: typeof path === "string" ? pathToRegexp(path) : path,
 		});
 	}
@@ -27,7 +27,7 @@ class Router {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	public fetch(request: Request, env: any) {
 		const { pathname } = new URL(request.url);
-		const match = this.#routes.find(({ method, path }) => request.method === method && path.test(pathname));
+		const match = this.#routes.find(({ method, path }) => method.test(request.method) && path.test(pathname));
 
 		if (!match) {
 			return new Response("Not found", {
@@ -42,4 +42,4 @@ class Router {
 
 const router = new Router();
 
-export { type Method, type RouteHandler, type RoutePath, router };
+export { type Method, type RouteHandler, router, type StringOrRegExp };
