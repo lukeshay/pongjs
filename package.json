@@ -1,6 +1,6 @@
 {
 	"name": "@pongjs/router",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "Simple router for Cloudflare Workers",
 	"type": "module",
 	"types": "dist/index.d.ts",
